@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
 /* 
   Clean Layout Replica CSS
 */
@@ -3084,7 +3085,7 @@ html, body {
 /* ==========================================================================
    EXACT REFERENCE MATCH (ANNUAL REPORT)
    ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap");
+
 
 /* --- HEADER --- */
 .ref-header {
@@ -4913,4 +4914,5 @@ button.toggle-pwd:hover { color: #0b1f3a; }
         transform: translateX(-50%) !important;
     }
 }
+
 
