@@ -137,7 +137,7 @@ const Publications = () => {
                                             return (
                                                 <div key={doc.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                                     {finalPdfUrl ? (
-                                                        <a href={finalPdfUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', transition: 'transform 0.2s', width: '100%', group: 'hover' }}
+                                                        <a href={finalPdfUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', transition: 'transform 0.2s', width: '100%' }}
                                                             onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; }}
                                                             onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
                                                         >

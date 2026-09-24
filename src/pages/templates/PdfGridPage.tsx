@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, Download } from 'lucide-react';
-import type { NsaiRecord } from '../data/nsai';
+import type { NsaiRecord } from '../../data/nsai';
 
 interface PdfGridPageProps {
     title: string;
