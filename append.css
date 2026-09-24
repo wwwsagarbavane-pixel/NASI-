@@ -1,0 +1,132 @@
+
+/* ========================================================= */
+/* MINISTRY FILTER SIDEBAR & NOTIFICATION LIST */
+/* ========================================================= */
+
+.ministry-sidebar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.ministry-tab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #475569;
+}
+
+.ministry-tab:last-child {
+    border-bottom: none;
+}
+
+.ministry-tab:hover {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.ministry-tab.active {
+    background-color: #f0fdf4;
+    color: #15803d;
+    font-weight: 600;
+    border-left: 4px solid #22c55e;
+    padding-left: 16px; /* Adjust for border */
+}
+
+.ministry-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.ministry-name {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Notification List & Cards */
+.nl-results .results-container {
+    border-radius: 8px;
+    background-color: white;
+}
+
+.nl-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s ease;
+}
+
+.notification-card:last-child {
+    border-bottom: none;
+}
+
+.notification-card:hover {
+    background-color: #f8fafc;
+}
+
+.nc-content {
+    flex: 1;
+    padding-right: 24px;
+}
+
+.nc-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.nc-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.nc-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.nc-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    color: #0ea5e9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.nc-action:hover {
+    background-color: #f0f9ff;
+    border-color: #0ea5e9;
+}

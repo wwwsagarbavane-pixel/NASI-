@@ -4443,49 +4443,38 @@ button.toggle-pwd:hover { color: #0b1f3a; }
 }
 
 .tmpl-hero {
-    position: relative;
-    min-height: 280px;
+    min-height: 480px;
+    background: linear-gradient(to right, #ffffff 0%, #ffffff 50%, transparent 100%), url("/assets/hero-bg-new.png") no-repeat center right / 55%;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    position: relative;
+    padding: 0 5%;
+    border-bottom: 1px solid #e2e8f0;
 }
-
-.tmpl-hero-bg {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 1;
+.tmpl-hero::after {
+    content: ""; position: absolute; left: 45%; top: 0; bottom: 0; width: 200px;
+    background: linear-gradient(to right, #ffffff, transparent); pointer-events: none;
 }
-
-.tmpl-hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.tmpl-hero-bg::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 50%, transparent 100%);
-}
-
+.tmpl-hero-bg { display: none; }
+.tmpl-hero-bg img { display: none; }
+.tmpl-hero-bg::after { display: none; }
 .tmpl-hero-content {
     position: relative;
     z-index: 2;
-    max-width: 600px;
+    max-width: 850px;
+    margin-top: -60px;
 }
-
 .tmpl-hero-content h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #0b1f3a;
-    margin: 0 0 0.5rem;
+    font-size: clamp(2.5rem, 4vw, 3.8rem); 
+    font-weight: 800; 
+    line-height: 1.2; 
+    margin-bottom: 1rem; 
+    color: #0f172a; 
+    letter-spacing: -0.5px;
+    word-break: break-word;
 }
-
 .tmpl-hero-content p {
-    font-size: 1.1rem;
-    color: #334155;
-    margin: 0 0 1rem;
+    font-size: 1.1rem; color: #334155; line-height: 1.6; margin-bottom: 2rem;
 }
 
 .tmpl-underline {
@@ -4916,3 +4905,692 @@ button.toggle-pwd:hover { color: #0b1f3a; }
 }
 
 
+
+/* ==========================================================================
+   ADVOCACY PAGE STYLES
+   ========================================================================== */
+
+/* Advocacy Overview Grid */
+.advocacy-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .advocacy-overview-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.advocacy-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.advocacy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(11, 66, 40, 0.1);
+}
+
+.advocacy-card-number {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(11, 66, 40, 0.1);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.advocacy-card-text {
+    font-size: 0.95rem;
+    color: var(--text-light-gray);
+    line-height: 1.7;
+}
+
+/* Notification Layout */
+.notification-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+@media (max-width: 992px) {
+    .notification-layout {
+        flex-direction: column;
+    }
+}
+
+.nl-sidebar {
+    flex: 0 0 320px;
+    position: sticky;
+    top: 100px;
+}
+
+@media (max-width: 992px) {
+    .nl-sidebar {
+        flex: auto;
+        width: 100%;
+        position: relative;
+        top: 0;
+    }
+}
+
+.nl-search-box {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.nl-search-box .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light-gray);
+}
+
+.nl-search-box input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--pill-radius);
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.nl-search-box input:focus {
+    border-color: var(--dark-green);
+    box-shadow: 0 4px 20px rgba(11, 66, 40, 0.1);
+}
+
+/* Ministry Filter */
+.ministry-filter-section {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.mf-title {
+    font-size: 1.1rem;
+    color: var(--text-black);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.mf-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mf-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: var(--bg-gray);
+    border: 1px solid transparent;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.mf-chip:hover {
+    background: #e2e8f0;
+}
+
+.mf-chip.active {
+    background: var(--dark-green);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(11, 66, 40, 0.2);
+}
+
+/* Notification List */
+.nl-results {
+    flex: 1;
+}
+
+.nl-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.notification-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.notification-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(11, 66, 40, 0.1);
+}
+
+.nc-content {
+    flex: 1;
+}
+
+.nc-title {
+    font-size: 1.15rem;
+    color: var(--text-black);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.notification-card:hover .nc-title {
+    color: var(--dark-green);
+}
+
+.nc-desc {
+    font-size: 0.85rem;
+    color: var(--text-light-gray);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.nc-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nc-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.circle-btn-outline-green {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(11, 66, 40, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-green);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.notification-card:hover .circle-btn-outline-green {
+    background: var(--dark-green);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(11, 66, 40, 0.2);
+}
+
+/* Empty State */
+.nl-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem;
+    background: #ffffff;
+    border: 1px dashed rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+}
+
+.nl-empty .empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bg-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light-gray);
+    margin-bottom: 1.5rem;
+}
+
+.nl-empty h4 {
+    font-size: 1.25rem;
+    color: var(--text-black);
+    margin-bottom: 0.5rem;
+}
+
+.nl-empty p {
+    font-size: 0.9rem;
+    color: var(--text-light-gray);
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: var(--text-dark);
+}
+.btn-outline:hover {
+    background: var(--bg-gray);
+}
+
+/* ========================================================= */
+/* MINISTRY FILTER SIDEBAR & NOTIFICATION LIST */
+/* ========================================================= */
+
+.ministry-sidebar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.ministry-tab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #475569;
+}
+
+.ministry-tab:last-child {
+    border-bottom: none;
+}
+
+.ministry-tab:hover {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.ministry-tab.active {
+    background-color: #f0fdf4;
+    color: #15803d;
+    font-weight: 600;
+    border-left: 4px solid #22c55e;
+    padding-left: 16px; /* Adjust for border */
+}
+
+.ministry-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+}
+
+.ministry-name {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Notification List & Cards */
+.nl-results .results-container {
+    border-radius: 8px;
+    background-color: white;
+}
+
+.nl-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s ease;
+}
+
+.notification-card:last-child {
+    border-bottom: none;
+}
+
+.notification-card:hover {
+    background-color: #f8fafc;
+}
+
+.nc-content {
+    flex: 1;
+    padding-right: 24px;
+}
+
+.nc-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.nc-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.nc-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.nc-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e2e8f0;
+    color: #0ea5e9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.nc-action:hover {
+    background-color: #f0f9ff;
+    border-color: #0ea5e9;
+}
+
+/* ========================================================= */
+/* NEW BEAUTIFUL MOCKUP UI */
+/* ========================================================= */
+
+.new-ui-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.new-ui-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #fdfdfd;
+}
+
+.new-ui-title-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.new-ui-title-area h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.folder-icon-bg {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #eefdf4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-ui-search-bar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.new-ui-search-bar .search-input-wrapper {
+    position: relative;
+    width: 320px;
+}
+
+.new-ui-search-bar .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.new-ui-search-bar input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #f8fafc;
+    outline: none;
+}
+
+.new-ui-search-bar input:focus {
+    border-color: #22c55e;
+    background: #fff;
+}
+
+.btn-search-yellow {
+    background: #fcd34d;
+    color: #0f172a;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-search-yellow:hover {
+    background: #fbbf24;
+}
+
+.new-ui-content {
+    display: flex;
+}
+
+.new-ui-sidebar-col {
+    width: 340px;
+    border-right: 1px solid #e2e8f0;
+    flex-shrink: 0;
+    background: #fdfdfd;
+}
+
+.new-ui-sidebar {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.new-ui-tab {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    border-left: 4px solid transparent;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.new-ui-tab.active {
+    background: linear-gradient(to right, #f0fdf4, #ffffff);
+    border-left: 4px solid #15803d;
+    padding-left: 20px;
+    color: #15803d;
+}
+
+.new-ui-tab .ministry-chevron {
+    color: #94a3b8;
+    transition: transform 0.2s;
+}
+
+.new-ui-tab:hover .ministry-chevron {
+    transform: translateX(4px);
+    color: #1e293b;
+}
+
+.new-ui-tab.active .ministry-chevron {
+    color: #15803d;
+}
+
+.ministry-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 6px;
+    margin-right: 16px;
+}
+
+.ministry-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ministry-icon-fallback {
+    color: #22c55e;
+}
+
+.new-ui-results-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-ui-card {
+    padding: 24px 32px;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.nc-icon-left {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: #fef2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
+    flex-shrink: 0;
+}
+
+.nc-pdf-icon {
+    color: #ef4444;
+}
+
+.new-ui-card .nc-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.new-ui-card .nc-meta {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.new-ui-card .nc-meta strong {
+    color: #475569;
+    font-weight: 500;
+}
+
+.circle-btn-download {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #f0fdf4;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dcfce7;
+    transition: all 0.2s;
+}
+
+.circle-btn-download:hover {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.new-ui-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px;
+    margin-top: auto;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #475569;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.page-btn:hover {
+    background: #f1f5f9;
+}
+
+.page-btn.active {
+    background: #065f46;
+    color: white;
+}

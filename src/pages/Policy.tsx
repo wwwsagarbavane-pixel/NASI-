@@ -2,59 +2,12 @@ import React, { useState, useMemo } from 'react';
 import { ChevronRight, Search, FileText, Megaphone, Folder, Download, CheckCircle2, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const CATEGORIES = [
-    { id: 'agri', name: 'Ministry of Agriculture & Farmers Welfare', icon: '/assets/emblem.png' }, // placeholder icon
-    { id: 'env', name: 'Ministry of Environment & Climate Change', icon: '/assets/emblem.png' },
-    { id: 'sci', name: 'Ministry of Science & Technology', icon: '/assets/emblem.png' },
-    { id: 'cci', name: 'Competition Commission of India', icon: '/assets/cci-logo.png' },
-    { id: 'ppv', name: 'Protection of Plant Variety & Farmers Right Act', icon: '/assets/ppv-logo.png' },
-    { id: 'state', name: 'State Department of Agriculture', icon: '/assets/emblem.png' },
-    { id: 'other', name: 'Other Ministry', icon: '/assets/search-icon.png' }
-];
-
-const MOCK_DOCUMENTS = [
-    {
-        id: 1,
-        title: 'ICAR-CICR_Advisory Pest and Disease Management 2024',
-        category: 'agri',
-        meta: 'Posted in IMP. NOTIFICATIONS, Latest News, Ministry of Agriculture and farmer welfare, Whats New on May 31, 2024',
-    },
-    {
-        id: 2,
-        title: 'ICAR-CICR_Advisory Pest and Disease Management 2024.pdf',
-        category: 'env',
-        meta: 'Posted in Ministry of Agriculture and farmer welfare on Sep 12, 2022',
-    },
-    {
-        id: 3,
-        title: 'Letter - Bt Cotton RIB issue in Punjab',
-        desc: 'Ref: 1. JDA (HVP) O/o Director of Agriculture and Farmers Welfare, Punjab Memo. No. ADO (Seed)/HVVP/1190 dated 29.08.2022\n2. GOI Letter no. 6-2/2017-SD (PI) dated 30.03.2021097-Letter _j.s (Seeds). RIB Punjab.PDF',
-        category: 'agri',
-        meta: 'Posted in Ministry of Agriculture and farmer welfare on Aug 31, 2022',
-    },
-    {
-        id: 4,
-        title: 'Environmental release of RRF event in HT Cotton_083-ADG Seeds.pdf',
-        category: 'env',
-        meta: 'Posted in Ministry of Agriculture and farmer welfare on Aug 05, 2022',
-    },
-    {
-        id: 5,
-        title: 'Proposed amendments in the Section 19 of the Seeds Act, 1966 (Offences and Penalties) 060-Letter to JS Seed.PDF',
-        category: 'agri',
-        meta: 'Posted in Ministry of Agriculture and farmer welfare on Jul 21, 2022',
-    },
-    {
-        id: 6,
-        title: '034- Letter to Secretary Agri_ dt 21-07-22.PDF',
-        desc: '034- Letter to Secretary Agri_ dt 21-07-22Payment of Annual Fee and Renewal Fee for the Plant Varieties (Extant Notified Category) registered under the provisions of the PPV&FR Act, 2001.',
-        category: 'agri',
-        meta: 'Ref: (1) Public Notice (13 of 2020) F. No. PPV&FRA/legal/02/2019 dated 09-11-2020...',
-    },
-];
+import { policyData } from '../data/nsai';
+import FilteredSection from '../components/advocacy/FilteredSection';
 
 const Policy = () => {
-    const [activeCategory, setActiveCategory] = useState('agri');
+    const CATEGORIES = ['All', ...Array.from(new Set(policyData.map(d => d.category || d.parentSection || 'Policy')))];
+    const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     
@@ -63,10 +16,11 @@ const Policy = () => {
 
     // Filter documents
     const filteredDocs = useMemo(() => {
-        return MOCK_DOCUMENTS.filter(doc => {
-            const matchesCategory = doc.category === activeCategory;
+        return policyData.filter(doc => {
+            const cat = doc.category || doc.parentSection || 'Policy';
+            const matchesCategory = activeCategory === 'All' || cat === activeCategory;
             const matchesSearch = doc.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                  (doc.desc && doc.desc.toLowerCase().includes(searchQuery.toLowerCase()));
+                                  ((doc.description || '').toLowerCase().includes(searchQuery.toLowerCase()));
             return matchesCategory && matchesSearch;
         });
     }, [activeCategory, searchQuery]);
@@ -207,101 +161,10 @@ const Policy = () => {
                     </div>
                 </div>
             </section>
-
-            {/* IMPORTANT REPRESENTATIONS */}
-            <section className="container">
-                <div className="policy-repo-card">
-                    <div className="repo-header">
-                        <div className="repo-title">
-                            <div className="repo-icon"><Folder size={24} /></div>
-                            <h2>Important Representations</h2>
-                        </div>
-                        <div className="repo-search">
-                            <input 
-                                type="text" 
-                                placeholder="Search documents, keywords..." 
-                                value={searchQuery}
-                                onChange={(e) => {
-                                    setSearchQuery(e.target.value);
-                                    setCurrentPage(1);
-                                }}
-                            />
-                            <button className="search-btn"><Search size={18} /></button>
-                        </div>
-                    </div>
-
-                    <div className="repo-layout">
-                        {/* Sidebar Navigation */}
-                        <div className="repo-sidebar">
-                            {CATEGORIES.map(cat => (
-                                <button 
-                                    key={cat.id}
-                                    className={`cat-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                                    onClick={() => {
-                                        setActiveCategory(cat.id);
-                                        setCurrentPage(1);
-                                    }}
-                                >
-                                    <span className="cat-icon-ph"></span>
-                                    <span className="cat-name">{cat.name}</span>
-                                    <ChevronRight size={16} className="cat-chevron" />
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Document List */}
-                        <div className="repo-content">
-                            {paginatedDocs.length > 0 ? (
-                                <div className="doc-list">
-                                    {paginatedDocs.map(doc => (
-                                        <div key={doc.id} className="doc-item">
-                                            <div className="doc-icon">
-                                                <img src="/assets/pdf-icon.png" alt="PDF" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                                                <FileText size={24} color="#dc2626" className="fallback-icon" />
-                                            </div>
-                                            <div className="doc-info">
-                                                <h4>{doc.title}</h4>
-                                                {doc.desc && <p className="doc-desc">{doc.desc}</p>}
-                                                <p className="doc-meta">{doc.meta}</p>
-                                            </div>
-                                            <button className="doc-download">
-                                                <Download size={18} />
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="doc-empty">
-                                    <Folder size={48} color="#cbd5e1" />
-                                    <p>No documents found for this category or search.</p>
-                                </div>
-                            )}
-
-                            {/* Pagination */}
-                            {totalPages > 1 && (
-                                <div className="pagination">
-                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                                        <button 
-                                            key={page} 
-                                            className={`page-btn ${currentPage === page ? 'active' : ''}`}
-                                            onClick={() => setCurrentPage(page)}
-                                        >
-                                            {page}
-                                        </button>
-                                    ))}
-                                    <button 
-                                        className="page-btn next"
-                                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                                        disabled={currentPage === totalPages}
-                                    >
-                                        <ChevronRight size={16} />
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
+            <div style={{ marginTop: '3rem' }}>
+                <FilteredSection title="Important Representations" data={policyData} />
+            </div>
         </div>
     );
 };

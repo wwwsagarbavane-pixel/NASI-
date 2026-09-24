@@ -45,7 +45,8 @@ const Header = () => {
                         <div className="dropdown-content">
                             <Link to="/about">About NSAI</Link>
                             <Link to="/reports">Annual Reports</Link>
-                            <Link to="/brochure">NSAI Brochure</Link>
+                            <a href="https://nsai.co.in/storage/app/media/NSAI%20Brochure%20%282019%29.pdf" target="_blank" rel="noreferrer">NSAI Brochure</a>
+                            <Link to="/calendar">Calendar</Link>
                         </div>
                     </div>
                     
@@ -65,7 +66,7 @@ const Header = () => {
                             <Link to="/advocacy">Advocacy</Link>
                             <Link to="/publications">Publication</Link>
                             <Link to="/social-initiatives">NSAI Social Initiatives</Link>
-                            <Link to="/breeder-seed-index">Breeder Seed Index</Link>
+                            <a href="https://seedtrace.gov.in/ms014/" target="_blank" rel="noreferrer">Breeder Seed Index</a>
                         </div>
                     </div>
 
@@ -90,9 +91,9 @@ const Header = () => {
                     </div>
 
                     <div className="dropdown">
-                        <Link to="/past-conferences">EVENTS <ChevronDown size={14} /></Link>
+                        <Link to="/events">EVENTS <ChevronDown size={14} /></Link>
                         <div className="dropdown-content">
-                            <Link to="/past-conferences">Past Conferences</Link>
+                            <a href="https://isc.nsai.co.in/" target="_blank" rel="noopener noreferrer">Past Conferences</a>
                             <Link to="/other-events">Other Events</Link>
                             <Link to="/workshop-training">Workshop & Training</Link>
                             <Link to="/agm">AGM</Link>

@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Search, Play } from 'lucide-react';
-
-interface Media {
-    id: number;
-    url: string;
-    title: string;
-    category: string;
-    duration?: string; // For videos
-}
+import type { NsaiRecord } from '../../data/nsai';
 
 interface Props {
     title: string;
     description: string;
-    data: Media[];
+    data: NsaiRecord[];
     type: 'photo' | 'video';
 }
 
@@ -21,11 +14,11 @@ const MediaGalleryTemplate: React.FC<Props> = ({ title, description, data, type 
     const [activeFilter, setActiveFilter] = useState('All');
     
     // Extract unique categories
-    const categories = ['All', ...Array.from(new Set(data.map(item => item.category)))];
+    const categories = ['All', ...Array.from(new Set(data.map(item => item.category || item.parentSection || 'Media')))];
 
     const filteredData = activeFilter === 'All' 
         ? data 
-        : data.filter(item => item.category === activeFilter);
+        : data.filter(item => (item.category || item.parentSection || 'Media') === activeFilter);
 
     return (
         <div className="template-page">
@@ -42,10 +35,6 @@ const MediaGalleryTemplate: React.FC<Props> = ({ title, description, data, type 
                     <div className="tmpl-underline"></div>
                 </div>
             </section>
-
-            <div className="container" style={{ marginTop: '2rem' }}>
-                <span className="demo-badge">DEMO DATA</span>
-            </div>
 
             <section className="container tmpl-section">
                 <div className="gallery-filters">
@@ -64,17 +53,21 @@ const MediaGalleryTemplate: React.FC<Props> = ({ title, description, data, type 
                     {filteredData.map(item => (
                         <div key={item.id} className="gallery-item">
                             <div className="gi-img-wrapper">
-                                <img src={item.url} alt={item.title} />
+                                <img src={item.image || item.url || '/assets/hero-bg-new.png'} alt={item.title} />
                                 {type === 'video' && (
                                     <div className="video-overlay">
                                         <div className="play-btn"><Play size={24} fill="currentColor" /></div>
-                                        {item.duration && <span className="duration">{item.duration}</span>}
+                                        {item.date && <span className="duration">{item.date}</span>}
                                     </div>
                                 )}
                             </div>
                             <div className="gi-info">
-                                <span className="gi-cat">{item.category}</span>
-                                <h4>{item.title}</h4>
+                                <span className="gi-cat">{item.category || item.parentSection || 'Media'}</span>
+                                <h4>
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                                        {item.title}
+                                    </a>
+                                </h4>
                             </div>
                         </div>
                     ))}

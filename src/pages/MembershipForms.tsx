@@ -82,8 +82,8 @@ const MembershipForms = () => {
                                 <button className="btn-primary" onClick={() => setSelectedForm('renewal')}>
                                     Fill Renewal Form Online <ArrowRight size={16} />
                                 </button>
-                                <button className="btn-outline-small">
-                                    <Download size={14} /> View PDF
+                                <button className="btn-outline-small" disabled style={{ cursor: 'not-allowed', color: '#94a3b8', borderColor: '#e2e8f0' }}>
+                                    <Download size={14} /> PDF Unavailable
                                 </button>
                             </div>
                         </div>
