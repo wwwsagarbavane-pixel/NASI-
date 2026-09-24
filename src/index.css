@@ -5594,3 +5594,132 @@ button.toggle-pwd:hover { color: #0b1f3a; }
     background: #065f46;
     color: white;
 }
+
+@media (max-width: 768px) {
+    /* HERO FIXES */
+    .tmpl-hero, .ref-hero {
+        background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%), url('/assets/hero-bg-new.png') no-repeat center center / cover !important;
+        padding: 4rem 5% !important;
+        justify-content: center;
+        text-align: center;
+    }
+    .tmpl-hero::after, .ref-hero::after {
+        display: none !important;
+    }
+    .tmpl-hero-content, .ref-hero-left {
+        max-width: 100% !important;
+        margin-top: 0 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .breadcrumbs {
+        justify-content: center;
+    }
+    .tmpl-underline {
+        margin: 0 auto;
+    }
+    .ref-label-wrap {
+        justify-content: center;
+    }
+    .ref-hero-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* SIDEBAR LAYOUT FIXES (Screenshot 1) */
+    .new-ui-wrapper[style] {
+        flex-direction: column !important;
+    }
+    .new-ui-sidebar-col, .new-ui-sidebar-col[style] {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .new-ui-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+    .new-ui-search-bar {
+        width: 100%;
+    }
+    .new-ui-search-bar .search-input-wrapper {
+        width: 100%;
+    }
+    .new-ui-card {
+        padding: 1.5rem !important;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nc-right {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+    .btn-view-doc {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* POLICY HERO FIXES (Screenshot 3) */
+    .policy-hero {
+        padding: 4rem 1rem 2rem 1rem;
+    }
+    .policy-hero-bg::after {
+        background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.4) 100%) !important;
+    }
+    .policy-hero-container {
+        align-items: center !important;
+        text-align: center;
+        gap: 1.5rem !important;
+    }
+    .policy-hero-right {
+        width: 100%;
+        background: rgba(255,255,255,0.85);
+    }
+    .policy-hero-center {
+        display: none !important;
+    }
+    .policy-underline {
+        margin: 0 auto;
+    }
+    .policy-intro-card {
+        margin-top: -20px !important;
+        padding: 1.5rem !important;
+    }
+
+    /* MEMBERSHIP LAYOUT FIXES */
+    .ref-main-container {
+        flex-direction: column !important;
+        margin-top: 1rem !important;
+    }
+    .ref-sidebar {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .ref-content {
+        padding: 1.5rem !important;
+    }
+    .ref-highlights {
+        grid-template-columns: 1fr !important;
+    }
+    .ref-footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .form-selection-container {
+        margin-top: 1rem !important;
+        padding: 0 1rem;
+    }
+    .form-card-new {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem !important;
+        gap: 1rem !important;
+    }
+    .form-card-new .btn-solid-large, .form-card-new .btn-outline-large, .form-card-new .btn-outline-small {
+        width: 100%;
+        justify-content: center;
+    }
+}
